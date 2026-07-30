@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مصمم البطاقات - الكتابة والتعديل اليدوي المباشر</title>
+  
+  <!-- Google Fonts for Authentic Arabic & English Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&family=Reem+Kufi:wght@600;700&family=Amiri:wght@700&family=Montserrat:wght@700;900&family=Readex+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- html2canvas for exporting high-res images -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top App Navigation Header -->
+  <header class="app-header">
+    <div class="logo">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <h1>مصمم البطاقات - إمكانية الكتابة والتعديل اليدوي المباشر</h1>
+    </div>
+    <div class="header-actions">
+      <button id="clearAllBtn" class="btn btn-secondary" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4);">
+        <i class="fa-solid fa-eraser"></i> تفريغ للكتابة من الصفر
+      </button>
+      <button id="resetBtn" class="btn btn-secondary">
+        <i class="fa-solid fa-rotate-right"></i> استعادة النموذج الجاهز
+      </button>
+      <button id="downloadBtn" class="btn btn-primary">
+        <i class="fa-solid fa-download"></i> تحميل البطاقة (صورة HD)
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container: Control Panel + Live Preview -->
+  <main class="main-container">
+    
+    <!-- Sidebar / Control Panel -->
+    <aside class="control-panel">
+      
+      <div class="manual-notice-card">
+        <i class="fa-solid fa-hand-pointer"></i>
+        <span><strong>ملاحظة:</strong> يمكنك الكتابة يدوياً في الحقول أدناه، أو <strong>النقر مباشرة على أي نص داخل البطاقة باليسار والكتابة فيه فوراً!</strong></span>
+      </div>
+
+      <!-- Section 0: Theme Selection (تصاميم المواد) -->
+      <section class="panel-card template-selector-card">
+        <h3><i class="fa-solid fa-cubes"></i> اختر نمط ومادة التصميم</h3>
+        <div class="theme-buttons-grid">
+          
+          <button class="theme-select-btn active" data-theme="classic">
+            <span class="theme-icon gold-navy-icon">🥇</span>
+            <div class="theme-info">
+              <span class="theme-title">الملكي الذهبي والكحلي (الأصلي)</span>
+              <span class="theme-desc">بطاقة ست ميسم للدروس التقوية العامة</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="english-special">
+            <span class="theme-icon english-icon">🇬🇧</span>
+            <div class="theme-info">
+              <span class="theme-title">تخصص اللغة الإنجليزية (English)</span>
+              <span class="theme-desc">أزرق ملكي مع لمسات بريطانية وأيقونات لغة</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="math-special">
+            <span class="theme-icon math-icon">📐</span>
+            <div class="theme-info">
+              <span class="theme-title">تخصص الرياضيات والفيزياء</span>
+              <span class="theme-desc">بنفسجي رقمي وذهبي مع الأشكال والرموز</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="science-special">
+            <span class="theme-icon science-icon">🔬</span>
+            <div class="theme-info">
+              <span class="theme-title">تخصص العلوم والأحياء والكيمياء</span>
+              <span class="theme-desc">زمردي وتيل مختبري مع ذرات وأنابيب الاختبار</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="arabic-special">
+            <span class="theme-icon arabic-icon">✒️</span>
+            <div class="theme-info">
+              <span class="theme-title">تخصص اللغة العربية والأدب</span>
+              <span class="theme-desc">عنابي وأندلسي أصيل مع ريشة الخط العربي</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="modern-dark">
+            <span class="theme-icon dark-cyan-icon">🌌</span>
+            <div class="theme-info">
+              <span class="theme-title">العصري الفاخر (Dark Neon)</span>
+              <span class="theme-desc">أزرق داكن وسماوي للمراكز والدورات الشاملة</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="playful">
+            <span class="theme-icon orange-past-icon">🎨</span>
+            <div class="theme-info">
+              <span class="theme-title">الباهيج (روضة وأطفال)</span>
+              <span class="theme-desc">ألوان مبهجة لتعليم الصغار والحساب الذهني</span>
+            </div>
+          </button>
+
+          <button class="theme-select-btn" data-theme="minimal">
+            <span class="theme-icon rose-minimal-icon">📜</span>
+            <div class="theme-info">
+              <span class="theme-title">البسيط الأنيق (Minimalist)</span>
+              <span class="theme-desc">تصميم عصري راقٍ وناعم للورش والتطوير</span>
+            </div>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Inputs Form Accordion/Sections -->
+      <form id="cardForm" class="form-sections">
+
+        <!-- Custom Icon Selector -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-icons"></i> أيقونة المادة المخصصة (أعلى البطاقة)</div>
+          <div class="input-field">
+            <label for="iconSelect">اختر أيقونة المادة الدراسية:</label>
+            <select id="iconSelect" class="custom-select">
+              <option value="fa-book-open">📖 كتاب مفتوح (عام)</option>
+              <option value="fa-language">🇬🇧 لغة إنجليزية (Language)</option>
+              <option value="fa-calculator">📐 رياضيات وحساب (Calculator)</option>
+              <option value="fa-flask">🔬 علوم وكيمياء (Flask/Science)</option>
+              <option value="fa-atom">⚛️ فيزياء وذرات (Atom)</option>
+              <option value="fa-pen-nib">✒️ لغة عربية وخط (Calligraphy Pen)</option>
+              <option value="fa-graduation-cap">🎓 قبعة تخرج (Graduation Cap)</option>
+              <option value="fa-lightbulb">💡 فكرة وتفوق (Lightbulb)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 1: Header & Badge -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-ribbon"></i> 1. كتابة الشعار والوسام يدويّاً</div>
+          <div class="input-row">
+            <div class="input-field">
+              <label for="badgePrefix">اللقب/النص العلوي:</label>
+              <input type="text" id="badgePrefix" value="ست" placeholder="اكتب اللقب هنا...">
+            </div>
+            <div class="input-field">
+              <label for="badgeName">الاسم الرئيسي بالوسام:</label>
+              <input type="text" id="badgeName" value="ميسم" placeholder="اكتب الاسم هنا...">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Main Titles -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-heading"></i> 2. كتابة عناوين البطاقة يدويّاً</div>
+          <div class="input-field">
+            <label for="titleTop">السطر الأول (العلوي):</label>
+            <input type="text" id="titleTop" value="يوجد" placeholder="مثال: يوجد / نعلن عن...">
+          </div>
+          <div class="input-field">
+            <label for="titleMain">العنوان الرئيسي البارز:</label>
+            <input type="text" id="titleMain" value="دروس تقوية" placeholder="مثال: دروس تقوية / دورة لغة...">
+          </div>
+          <div class="input-field">
+            <label for="subtitleBadge">الشريط المركزي (الفئة المستهدفة):</label>
+            <input type="text" id="subtitleBadge" value="لكافة المراحل الدراسية" placeholder="اكتب الفئة المستهدفة...">
+          </div>
+          <div class="input-field">
+            <label for="promoNote">سطر الملاحظة / العرض الجذاب:</label>
+            <input type="text" id="promoNote" value="أسعار مناسبة للتسجيل أكثر من مادة" placeholder="اكتب تفاصيل العرض...">
+          </div>
+        </div>
+
+        <!-- Section 3: Location & Phone -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-location-dot"></i> 3. كتابة العنوان والهاتف يدويّاً</div>
+          <div class="input-field">
+            <label for="addressLine1">العنوان (السطر الأول):</label>
+            <input type="text" id="addressLine1" value="حي الجهاد المخابرات" placeholder="اكتب اسم المنطقة والشريان...">
+          </div>
+          <div class="input-field">
+            <label for="addressLine2">العنوان (السطر الثاني):</label>
+            <input type="text" id="addressLine2" value="خلف جامع محمد رسول الله" placeholder="اكتب أقرب نقطة دالة...">
+          </div>
+          <div class="input-field">
+            <label for="phoneNum">رقم الهاتف:</label>
+            <input type="text" id="phoneNum" value="07723270980" dir="ltr" style="text-align: right;" placeholder="07XXXXXXXXX">
+          </div>
+        </div>
+
+        <!-- Section 4: Pricing Tiers -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-tags"></i> 4. كتابة باقات الأسعار يدويّاً</div>
+          
+          <div class="tier-input-group">
+            <span class="tier-num">الخيار 1:</span>
+            <input type="text" id="tier1Title" value="مادة واحدة" placeholder="اسم المادة/الباقة">
+            <input type="text" id="tier1Price" value="سعر مناسب" placeholder="السعر/التفاصيل">
+          </div>
+
+          <div class="tier-input-group">
+            <span class="tier-num">الخيار 2:</span>
+            <input type="text" id="tier2Title" value="مادتان" placeholder="اسم المادة/الباقة">
+            <input type="text" id="tier2Price" value="سعر مناسب" placeholder="السعر/التفاصيل">
+          </div>
+
+          <div class="tier-input-group">
+            <span class="tier-num">الخيار 3:</span>
+            <input type="text" id="tier3Title" value="ثلاث مواد" placeholder="اسم المادة/الباقة">
+            <input type="text" id="tier3Price" value="خصم خاص" placeholder="السعر/التفاصيل">
+          </div>
+        </div>
+
+        <!-- Section 5: Action Button & Footer -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-graduation-cap"></i> 5. كتابة نص الزر السفلي يدويّاً</div>
+          <div class="input-field">
+            <label for="btnText">نص الزر السفلي:</label>
+            <input type="text" id="btnText" value="سجل الآن" placeholder="مثال: سجل الآن / احجز مقعدك">
+          </div>
+        </div>
+
+        <!-- Section 6: Colors Customization -->
+        <div class="form-group-box">
+          <div class="box-title"><i class="fa-solid fa-sliders"></i> 6. تخصيص ألوان البطاقة</div>
+          <div class="color-pickers-row">
+            <div class="color-picker-item">
+              <label for="mainColor">اللون الرئيسي (البارز):</label>
+              <input type="color" id="mainColor" value="#c79222">
+            </div>
+            <div class="color-picker-item">
+              <label for="darkColor">اللون الداكن (الأساسي):</label>
+              <input type="color" id="darkColor" value="#0a192f">
+            </div>
+            <div class="color-picker-item">
+              <label for="bgColor">خلفية البطاقة:</label>
+              <input type="color" id="bgColor" value="#f9f5eb">
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </aside>
+
+    <!-- Preview Area -->
+    <section class="preview-area">
+      <div class="preview-toolbar">
+        <span><i class="fa-solid fa-pen-nib"></i> انقر على أي نص داخل البطاقة أدناه لتعديله يدوياً فورا! (<span id="currentThemeLabel">النموذج الملكي الذهبي</span>)</span>
+        <span class="zoom-info">أبعاد HD مربعة للطباعة والتواصل</span>
+      </div>
+
+      <div class="card-wrapper">
+        <!-- The Rendered Poster Card with contenteditable for Direct Manual Editing -->
+        <div class="card-container theme-classic" id="posterCard">
+          
+          <!-- Decorative Frame Lines -->
+          <div class="frame-border-outer"></div>
+          <div class="frame-border-inner"></div>
+          <div class="bg-spots"></div>
+
+          <!-- TOP RIGHT BADGE SEAL -->
+          <div class="top-badge-wrapper">
+            <div class="badge-ribbon-tails"></div>
+            <div class="badge-circle">
+              <div class="badge-ring"></div>
+              <span class="badge-prefix editable-text" id="outBadgePrefix" contenteditable="true">ست</span>
+              <span class="badge-name editable-text" id="outBadgeName" contenteditable="true">ميسم</span>
+              <i class="fa-solid fa-heart badge-heart"></i>
+            </div>
+            <div class="badge-laurel-leaves">
+              <i class="fa-solid fa-leaf leaf-1"></i>
+              <i class="fa-solid fa-leaf leaf-2"></i>
+            </div>
+          </div>
+
+          <!-- TOP CENTER ICON & RAYS -->
+          <div class="top-center-icon">
+            <div class="sunburst-rays"></div>
+            <i class="fa-solid fa-book-open book-icon" id="themeTopIcon"></i>
+          </div>
+
+          <!-- MAIN TITLE SECTION -->
+          <div class="card-header-titles">
+            <h2 class="title-top editable-text" id="outTitleTop" contenteditable="true">يوجد</h2>
+            <div class="main-title-wrap">
+              <span class="sparkle left-sparkle">✦</span>
+              <h1 class="title-main editable-text" id="outTitleMain" contenteditable="true">دروس تقوية</h1>
+              <span class="sparkle right-sparkle">✦</span>
+            </div>
+          </div>
+
+          <!-- PILL BADGE: target age/level -->
+          <div class="pill-badge-container">
+            <span class="pill-dot">●</span>
+            <span id="outSubtitleBadge" class="editable-text" contenteditable="true">لكافة المراحل الدراسية</span>
+            <span class="pill-dot">●</span>
+          </div>
+
+          <!-- PROMO NOTE SECTION WITH ACCENT LINES -->
+          <div class="promo-note-row">
+            <span class="line-decor"></span>
+            <span class="promo-dot">●</span>
+            <span id="outPromoNote" class="promo-text editable-text" contenteditable="true">أسعار مناسبة للتسجيل أكثر من مادة</span>
+            <span class="promo-dot">●</span>
+            <span class="line-decor"></span>
+          </div>
+
+          <!-- CONTACT & LOCATION BOX -->
+          <div class="info-card-box contact-box">
+            <div class="contact-item">
+              <div class="icon-circle loc-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="address-text">
+                <div id="outAddressLine1" class="editable-text" contenteditable="true">حي الجهاد المخابرات</div>
+                <div id="outAddressLine2" class="editable-text" contenteditable="true">خلف جامع محمد رسول الله</div>
+              </div>
+            </div>
+            
+            <div class="contact-item phone-item">
+              <div class="icon-circle phone-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="phone-number editable-text" id="outPhoneNum" contenteditable="true" dir="ltr">07723270980</div>
+            </div>
+          </div>
+
+          <!-- PRICING TIERS BOX -->
+          <div class="info-card-box pricing-box">
+            <div class="pricing-col">
+              <div class="tier-badge editable-text" id="outTier1Title" contenteditable="true">مادة واحدة</div>
+              <div class="tier-val editable-text" id="outTier1Price" contenteditable="true">سعر مناسب</div>
+            </div>
+            <div class="tier-divider"></div>
+            <div class="pricing-col">
+              <div class="tier-badge editable-text" id="outTier2Title" contenteditable="true">مادتان</div>
+              <div class="tier-val editable-text" id="outTier2Price" contenteditable="true">سعر مناسب</div>
+            </div>
+            <div class="tier-divider"></div>
+            <div class="pricing-col">
+              <div class="tier-badge editable-text" id="outTier3Title" contenteditable="true">ثلاث مواد</div>
+              <div class="tier-val editable-text" id="outTier3Price" contenteditable="true">خصم خاص</div>
+            </div>
+          </div>
+
+          <!-- ACTION BUTTON -->
+          <div class="cta-button-row">
+            <div class="cta-button">
+              <div class="cta-icon-circle">
+                <i class="fa-solid fa-graduation-cap" id="themeBtnIcon"></i>
+              </div>
+              <span id="outBtnText" class="editable-text" contenteditable="true">سجل الآن</span>
+            </div>
+          </div>
+
+          <!-- BOTTOM CORNER ILLUSTRATIONS -->
+          <div class="illustration-left">
+            <div class="pencil-cup">
+              <span class="pen pen-1"></span>
+              <span class="pen pen-2"></span>
+              <span class="pen pen-3"></span>
+              <div class="cup-body"></div>
+            </div>
+            <div class="plant-pot">
+              <div class="leaf l1"></div>
+              <div class="leaf l2"></div>
+              <div class="leaf l3"></div>
+              <div class="pot"></div>
+            </div>
+            <div class="books-stack">
+              <div class="book book-4"></div>
+              <div class="book book-3"></div>
+              <div class="book book-2"></div>
+              <div class="book book-1"></div>
+            </div>
+          </div>
+
+          <div class="illustration-right">
+            <div class="notebook-spiral">
+              <div class="spirals">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="notebook-page">
+                <div class="ruled-line"></div>
+                <div class="ruled-line"></div>
+                <div class="ruled-line"></div>
+                <div class="ruled-line"></div>
+              </div>
+              <div class="notebook-pencil"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
